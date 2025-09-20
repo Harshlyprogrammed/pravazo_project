@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore India - Discover the Beauty of Indian States</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #299c6c;
+            --primary-dark: #c53030;
+            --secondary: #38a169;
+            --accent: #d69e2e;
+            --background: #f7fafc;
+            --foreground: #2d3748;
+            --muted: #718096;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input:focus {
+            outline: 2px solid var(--accent);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .states-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .state-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .state-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .state-content {
+            padding: 1.5rem;
+        }
+
+        .state-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .state-capital {
+            color: var(--muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .state-description {
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .state-details {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-dark);
+        }
+
+        footer {
+            background-color: var(--foreground);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .states-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .states-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Explore India</h1>
+            <p class="tagline">Discover the diverse culture, heritage, and beauty of India's states and union territories</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for states, cities, or landmarks...">
+            </div>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active">All Regions</button>
+        <button class="filter-btn">North India</button>
+        <button class="filter-btn">South India</button>
+        <button class="filter-btn">East India</button>
+        <button class="filter-btn">West India</button>
+        <button class="filter-btn">Northeast India</button>
+        <button class="filter-btn">Central India</button>
+    </div>
+
+    <section class="hero">
+        <h2>Incredible India Awaits You</h2>
+        <p>From the snow-capped Himalayas to the sunny beaches of Goa, from the deserts of Rajasthan to the backwaters of Kerala, India offers an array of experiences for every traveler.</p>
+    </section>
+
+    <div class="states-container">
+        <!-- State 1: Maharashtra -->
+        <div class="state-card">
+            <img src="images (1).jpg" alt="Iconic Gateway of India monument in Mumbai with the Arabian Sea in the background" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Maharashtra</h3>
+                <p class="state-capital">Capital: Mumbai</p>
+                <p class="state-description">Financial capital of India, known for Bollywood, historic caves, and beautiful hill stations.</p>
+                <div class="state-details">
+                    <span>Language: Marathi</span>
+                    <span>Popular: Mumbai, Pune</span>
+                </div>
+                <a href="Mahrathra.html" class="read-more">Explore Maharashtra →</a>
+            </div>
+        </div>
+
+        <!-- State 2: Goa -->
+        <div class="state-card">
+            <img src="goaimage.jpg" alt="Beautiful beach in Goa with palm trees, golden sand and blue ocean waters" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Goa</h3>
+                <p class="state-capital">Capital: Panaji</p>
+                <p class="state-description">Famous for its beaches, Portuguese heritage, seafood, and vibrant nightlife.</p>
+                <div class="state-details">
+                    <span>Language: Konkani</span>
+                    <span>Popular: Beaches, Churches</span>
+                </div>
+                <a href="#" class="read-more">Explore Goa →</a>
+            </div>
+        </div>
+
+        <!-- State 3: Rajasthan -->
+        <div class="state-card">
+            <img src="Rajesthaniamge.jpg" alt="Majestic desert palace in Jaisalmer with golden sand dunes under a clear blue sky" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Rajasthan</h3>
+                <p class="state-capital">Capital: Jaipur</p>
+                <p class="state-description">Land of kings with majestic forts, palaces, desert landscapes, and rich cultural heritage.</p>
+                <div class="state-details">
+                    <span>Language: Hindi</span>
+                    <span>Popular: Jaipur, Udaipur</span>
+                </div>
+                <a href="#" class="read-more">Explore Rajasthan →</a>
+            </div>
+        </div>
+
+        <!-- State 4: Kerala -->
+        <div class="state-card">
+            <img src="keralaimage.jpg" alt="Serene Kerala backwaters with traditional houseboat and lush green palm trees" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Kerala</h3>
+                <p class="state-capital">Capital: Thiruvananthapuram</p>
+                <p class="state-description">Known as "God's Own Country" with backwaters, beaches, Ayurvedic treatments, and hill stations.</p>
+                <div class="state-details">
+                    <span>Language: Malayalam</span>
+                    <span>Popular: Backwaters, Tea Gardens</span>
+                </div>
+                <a href="#" class="read-more">Explore Kerala →</a>
+            </div>
+        </div>
+
+        <!-- State 5: Uttar Pradesh -->
+        <div class="state-card">
+            <img src="Up1.jpg" alt="Magnificent Taj Mahal monument in Agra with reflective pool and beautiful gardens" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Uttar Pradesh</h3>
+                <p class="state-capital">Capital: Lucknow</p>
+                <p class="state-description">Home to the Taj Mahal, sacred rivers, and rich historical and cultural significance.</p>
+                <div class="state-details">
+                    <span>Language: Hindi</span>
+                    <span>Popular: Taj Mahal, Varanasi</span>
+                </div>
+                <a href="#" class="read-more">Explore Uttar Pradesh →</a>
+            </div>
+        </div>
+
+        <!-- State 6: Himachal Pradesh -->
+        <div class="state-card">
+            <img src="Hp1.jpg" alt="Snowy Himalayan mountains with pine forests and clear blue skies in Himachal Pradesh" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Himachal Pradesh</h3>
+                <p class="state-capital">Capital: Shimla</p>
+                <p class="state-description">Mountainous state known for hill stations, adventure sports, and Tibetan culture.</p>
+                <div class="state-details">
+                    <span>Language: Hindi</span>
+                    <span>Popular: Shimla, Manali</span>
+                </div>
+                <a href="#" class="read-more">Explore Himachal Pradesh →</a>
+            </div>
+        </div>
+
+        <!-- State 7: Tamil Nadu -->
+        <div class="state-card">
+            <img src="Tn1.jpg" alt="Magnificent Dravidian temple architecture with intricate sculptures and colorful gopuram" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Tamil Nadu</h3>
+                <p class="state-capital">Capital: Chennai</p>
+                <p class="state-description">Renowned for its Dravidian-style Hindu temples, classical dance, and filter coffee.</p>
+                <div class="state-details">
+                    <span>Language: Tamil</span>
+                    <span>Popular: Temples, Chennai</span>
+                </div>
+                <a href="#" class="read-more">Explore Tamil Nadu →</a>
+            </div>
+        </div>
+
+        <!-- State 8: Gujarat -->
+        <div class="state-card">
+            <img src="Gj1.jpg" alt="White desert of Kutch with traditional handicrafts and vibrant cultural festival decorations" class="state-image">
+            <div class="state-content">
+                <h3 class="state-name">Gujarat</h3>
+                <p class="state-capital">Capital: Gandhinagar</p>
+                <p class="state-description">Birthplace of Mahatma Gandhi, known for its business culture, festivals, and wildlife sanctuaries.</p>
+                <div class="state-details">
+                    <span>Language: Gujarati</span>
+                    <span>Popular: Rann of Kutch, Ahmedabad</span>
+                </div>
+                <a href="#" class="read-more">Explore Gujarat →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> | Discover the incredible diversity of Indian states and union territories</p>
+        <p>Home to 28 states and 8 union territories, each with unique culture, cuisine, and traditions</p>
+    </footer>
+
+    <script>
+        // Simple filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const stateCards = document.querySelectorAll('.state-card');
+            const searchInput = document.querySelector('.search-input');
+            
+            // Filter buttons functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would filter the cards by region
+                    // For this example, we're just showing a simple alert
+                    alert('Filtering by: ' + this.textContent);
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                stateCards.forEach(card => {
+                    const stateName = card.querySelector('.state-name').textContent.toLowerCase();
+                    const stateDescription = card.querySelector('.state-description').textContent.toLowerCase();
+                    
+                    if (stateName.includes(searchTerm) || stateDescription.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

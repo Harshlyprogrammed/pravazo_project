@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <a href="Page1.html"></a>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background-image: url('login.jpg');
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 40px;
+        }
+        
+        .travel-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 252, 252, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .travel-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 18px;
+        }
+        
+        .input-group input {
+            padding-left: 45px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .social-btn {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #a0aec0;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .divider::before {
+            margin-right: .5em;
+        }
+        
+        .divider::after {
+            margin-left: .5em;
+        }
+        
+        .travel-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto travel-card">
+            <div class="px-8 py-6">
+                <div class="text-center mb-6">
+                    <div class="travel-icon mb-2">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">PRAVAZO</h2>
+                    <p class="text-gray-600">Sign in to your account</p>
+                </div>
+                
+                <form>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" class="w-full py-3 px-4 focus:outline-none">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" class="w-full py-3 px-4 focus:outline-none">
+                    </div>
+                    
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                        </div>
+                        
+                        <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-login w-full py-3 text-lg font-semibold">Sign In</button>
+                </form>
+                
+                <div class="my-6">
+                    <span class="divider">Or continue with</span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-google text-red-500 text-xl"></i>
+                    </a>
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
+                    </a>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <p class="text-gray-600">Don't have an account? 
+                        <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-500">Sign up</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-100 px-8 py-4 text-center">
+                <p class="text-xs text-gray-600"> All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

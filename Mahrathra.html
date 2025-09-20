@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maharashtra Tourism - Explore Incredible India</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #eb7e18;
+            --primary-dark: #1e3a8a;
+            --secondary: #f97316;
+            --accent: #ec4899;
+            --background: #f8fafc;
+            --foreground: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #ea580c;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--foreground);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: var(--muted);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('pune.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Featured Places */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .place-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .place-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .place-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .place-content {
+            padding: 20px;
+        }
+        
+        .place-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .place-content p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background-color: #f1f5f9;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+          /* Video Section */
+        .video-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0 auto;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--foreground);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .places-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Maharashtra Tourism</a>
+            
+            <nav class="nav-links">
+                <a href="Exploreindia.html">Home</a>
+                <a href="#places">Places</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Discover Maharashtra's Hidden Treasures</h1>
+            <p>Explore the rich heritage, diverse landscapes, and vibrant culture of India's most dynamic state</p>
+            <a href="#places" class="btn">Explore Destinations</a>
+        </div>
+    </section>
+
+    <!-- Featured Places -->
+    <section class="featured-places" id="places">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Destinations</h2>
+                <p>Experience the best of Maharashtra's diverse attractions</p>
+            </div>
+            
+            <div class="places-grid">
+                <!-- Mumbai -->
+                <div class="place-card">
+                    <img src="mumbai.jpg" 
+                         alt="Gateway of India monument in Mumbai with historic architecture and waterfront" class="place-img">
+                    <div class="place-content">
+                        <h3>Mumbai</h3>
+                        <p>The financial capital of India, known for its Bollywood industry, colonial architecture, and vibrant street life.</p>
+                        <a href="#" class="read-more">Explore Mumbai →</a>
+                    </div>
+                </div>
+                
+                <!-- Pune -->
+                <div class="place-card">
+                    <img src="Puneimage.JPG" 
+                         alt="Shaniwar Wada fort in Pune with traditional Maharashtrian architecture" class="place-img">
+                    <div class="place-content">
+                        <h3>Pune</h3>
+                        <p>Cultural capital of Maharashtra with historic forts, educational institutions, and pleasant weather.</p>
+                        <a href="#" class="read-more">Explore Pune →</a>
+                    </div>
+                </div>
+                
+                <!-- Ajanta & Ellora Caves -->
+                <div class="place-card">
+                    <img src="Puneim2.jpg" 
+                         alt="Ancient rock-cut caves of Ajanta with intricate Buddhist sculptures and paintings" class="place-img">
+                    <div class="place-content">
+                        <h3>Ajanta & Ellora Caves</h3>
+                        <p>UNESCO World Heritage Sites featuring stunning rock-cut cave monuments dating back to the 2nd century BCE.</p>
+                        <a href="#" class="read-more">Explore Caves →</a>
+                    </div>
+                </div>
+                
+                <!-- Mahabaleshwar -->
+                <div class="place-card">
+                    <img src="mahabaleshwar.jpg" 
+                         alt="Scenic hill station of Mahabaleshwar with lush green valleys and strawberry farms" class="place-img">
+                    <div class="place-content">
+                        <h3>Mahabaleshwar</h3>
+                        <p>Popular hill station known for its strawberry farms, scenic points, and pleasant climate throughout the year.</p>
+                        <a href="#" class="read-more">Explore Mahabaleshwar →</a>
+                    </div>
+                </div>
+                
+                <!-- Lonavala -->
+                <div class="place-card">
+                    <img src="lonavala.jpg" 
+                         alt="Lush green hills of Lonavala with waterfalls and misty landscapes" class="place-img">
+                    <div class="place-content">
+                        <h3>Lonavala</h3>
+                        <p>Famous hill station located between Mumbai and Pune, known for its waterfalls, caves, and chikki snacks.</p>
+                        <a href="#" class="read-more">Explore Lonavala →</a>
+                    </div>
+                </div>
+                
+                <!-- Aurangabad -->
+                <div class="place-card">
+                    <img src="aurangabad.jpg" 
+                         alt="Bibi Ka Maqbara in Aurangabad with Mughal architecture resembling the Taj Mahal" class="place-img">
+                    <div class="place-content">
+                        <h3>Aurangabad</h3>
+                        <p>Historical city serving as gateway to Ajanta & Ellora caves, with its own impressive monuments and silk textiles.</p>
+                        <a href="#" class="read-more">Explore Aurangabad →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Photo Gallery</h2>
+                <p>Glimpse of Maharashtra's diverse beauty and culture</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Mimage1.jpg" 
+                         alt="Marine Drive in Mumbai at sunset with curved seafront and city lights">
+                </div>
+                <div class="gallery-item">
+                    <img src="Mimage2.jpg" 
+                         alt="Ganesh Chaturthi festival celebration with decorated idols and colorful processions">
+                </div>
+                <div class="gallery-item">
+                    <img src="Mimage3.jpg" 
+                         alt="Raigad Fort on hilltop with historic architecture and panoramic views">
+                </div>
+                <div class="gallery-item">
+                    <img src="Mimage4.jpg" 
+                         alt="Traditional Maharashtrian thali meal with various dishes and colorful serving">
+                </div>
+                <div class="gallery-item">
+                    <img src="Mimage5.jpg" 
+                         alt="Chhatrapati Shivaji Terminus railway station with Victorian-Gothic architecture">
+                </div>
+                <div class="gallery-item">
+                    <img src="Mimage6.jpg" 
+                         alt="Beaches of Konkan coastline with golden sand and palm trees">
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Video Section -->
+    <section class="video-section" id="video">
+  <div class="container">
+    <div class="section-title">
+      <h2>Watch Maharashtra</h2>
+      <p>Experience the beauty and culture of Maharashtra through this video</p>
+    </div>
+
+    <div class="video-wrapper">
+      <video
+        src="Top 10 Best Tourist Places to Visit in Maharashtra _ India - English.mp4"
+        controls
+        preload="metadata"
+      ></video>
+    </div>
+  </div>
+</section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Maharashtra</h2>
+                    <p>Maharashtra is India's second-most populous state and third-largest by area. Stretching from the coast of the Arabian Sea to the interior Deccan Plateau, it features diverse landscapes from bustling cities to serene hill stations, ancient caves to modern infrastructure.</p>
+                    <p>The state is a cultural powerhouse, known for its Marathi heritage, Bollywood film industry, vibrant festivals like Ganesh Chaturthi, and delectable cuisine ranging from street food vada pav to sophisticated Kolhapuri dishes.</p>
+                    <p>With a history dating back to ancient times, Maharashtra offers visitors a unique blend of historical monuments, natural beauty, and contemporary urban experiences.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="About.jpg" 
+                         alt="Cultural map of Maharashtra showing diverse regions and landmarks">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Maharashtra Tourism</h3>
+                    <p>Exploring the heart of India's western coast, from historic caves to modern marvels.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#places">Destinations</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Regions</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Konkan</a></li>
+                        <li><a href="#">Western Ghats</a></li>
+                        <li><a href="#">Desh</a></li>
+                        <li><a href="#">Khandesh</a></li>
+                        <li><a href="#">Marathwada</a></li>
+                        <li><a href="#">Vidarbha</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>Email: info@maharashratourism.com</li>
+                        <li>Phone: +91 123 456 7890</li>
+                        <li>Address: Mumbai, Maharashtra, India</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
